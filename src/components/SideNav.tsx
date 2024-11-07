@@ -30,7 +30,7 @@ const NavLinks = [
 ]
 export default function SideNav() {
     return <>
-    <div className=' md:flex relative bg-black/25  md:flex-col  hidden md:col-span-2 justify-center items-center'>
+    <div className=' md:flex relative bg-black/15  md:flex-col  hidden md:col-span-2 justify-center items-center'>
     <h4 className=' absolute top-2 text-sm font-bold '>
     <Link href={'/'} className='text-rose-500 font-bold text-xl'>M11</Link> Gaming
     </h4>
