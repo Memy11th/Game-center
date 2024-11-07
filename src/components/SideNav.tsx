@@ -29,7 +29,7 @@ const NavLinks = [
 ]
 export default function SideNav() {
     return <>
-    <div className='flex flex-col gap-8 my-2 col-span-2 justify-center items-center'>
+    <div className='md:flex md:flex-col gap-8 my-2 hidden md:col-span-2 justify-center items-center'>
     {NavLinks.map((navLink , index)=> <NavLinkComp key={index} Links={navLink}/>)}
 
     </div>

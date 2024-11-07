@@ -15,11 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased h-screen">
+      <body className="antialiased min-h-screen">
         <GridContainer cols={12}>
           <SideNav />
           
-          <div className="col-span-10 bg-red-600">content</div>
+          <div className="md:col-span-10 col-span-12 min-h-screen bg-red-600">{children}</div>
         </GridContainer>
       </body>
     </html>
