@@ -67,6 +67,7 @@ export default function Swipper({ items, PaginationImgs }: { items: { src: strin
                     {items.map((item, index) => (
                         
                         <div
+                        onClick={()=>swiper?.slideTo(index)}
                         className='rounded-xl overflow-hidden max-w-xl w-full h-40 hover:-translate-y-8  relative z-10 duration-300'
                         key={index}
                         >
