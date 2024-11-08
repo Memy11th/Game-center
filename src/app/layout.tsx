@@ -20,7 +20,7 @@ export default function RootLayout({
         <GridContainer cols={12}>
           <SideNav />
           
-          <div className="md:col-span-10 col-span-12 min-h-screen ">
+            <div className="md:col-span-10 col-span-12 min-h-screen ">
             <Navbar />
             {children}
             </div>

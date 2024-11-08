@@ -23,7 +23,7 @@ export default function GridContainer({
   }[cols];
 
   return (
-    <div className={`grid ${gridClasses} gap-2`}>
+    <div className={`grid ${gridClasses} gap-2 `}>
       {children}
     </div>
   );
