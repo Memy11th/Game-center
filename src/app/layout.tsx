@@ -3,6 +3,7 @@ import "./globals.css";
 import GridContainer from "@/components/GridContainer";
 import SideNav from "@/components/SideNav";
 import Navbar from "@/components/Navbar";
+import Providers from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Games store center by M11",
@@ -16,7 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className=" min-h-screen h-full ">
+      <body className=" min-h-screen h-full "> 
+        <Providers>
         <GridContainer cols={12}>
           <SideNav />
           
@@ -25,6 +27,7 @@ export default function RootLayout({
             {children}
             </div>
         </GridContainer>
+        </Providers>
       </body>
     </html>
   );

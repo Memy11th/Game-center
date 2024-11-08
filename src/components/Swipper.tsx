@@ -34,8 +34,7 @@ export default function Swipper({ items, PaginationImgs }: { items: { src: strin
                 spaceBetween={10}
                 slidesPerView={1}
                 className='h-96 rounded-2xl'
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiperInstance) => setSwiper(swiperInstance)} // Set swiper instance to state
+                onSwiper={(swiperInstance) => setSwiper(swiperInstance)} 
                 loop={true}
             >
                 <div className='flex items-start justify-start w-full h-full relative'>
