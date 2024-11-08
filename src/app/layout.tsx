@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased min-h-screen ">
+      <body className=" min-h-screen h-full ">
         <GridContainer cols={12}>
           <SideNav />
           
