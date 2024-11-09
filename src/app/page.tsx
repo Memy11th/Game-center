@@ -1,8 +1,7 @@
-import { allGenre } from "@/Api/Api";
+import {  searchGameFn } from "@/Api/Api";
 import HeroSection from "@/components/HeroSection";
 export default function Home() {
-
-  allGenre()
+searchGameFn('',1,1,3600,[])
   return <>
   <HeroSection/>
   </>
