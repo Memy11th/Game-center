@@ -15,3 +15,15 @@ export const searchGameFn = async function (
     return data;
     
 }
+
+export const getGame = async function (id:string){
+    try{
+        const data = fetchFn(`${API_URL}games/${id}?key=${API_KEY}`);
+        const screenshots = fetchFn(`${API_URL}games/${id}/screenshots?key=${API_KEY}`);
+        const similar = fetchFn(`${API_URL}games/${id}/game-series?key=${API_KEY}`)
+        return {data,screenshots,similar}
+    }catch(err){
+        throw err
+    }
+    
+}
