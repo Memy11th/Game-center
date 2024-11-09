@@ -1,7 +1,10 @@
 const API_KEY = process.env.API_KEY ; 
 const API_URL = 'https://api.rawg.io/api/'
 
-const fetchFn = (url:string,cache?:number)=> fetch(url,{next:{revalidate:cache || 3600 }}).then((Response)=>Response.json())
+// A dynamic arch. to the fetch part to be dynamic
+const fetchFn = (url:string,cache?:number)=> fetch(url,{next:{revalidate:cache || 3600 }}).then((Response)=>Response.json());
+
+// a function to get games based on your search
 export const searchGameFn = async function (
     query?:string,
     page:number,
@@ -16,6 +19,7 @@ export const searchGameFn = async function (
     
 }
 
+// a function to get a certain game Details , screenshots & similar games .. the function's Archeticture made to both SSC and CSC
 export const getGame = async function (id:string){
     try{
         const data = fetchFn(`${API_URL}games/${id}?key=${API_KEY}`);
@@ -24,6 +28,33 @@ export const getGame = async function (id:string){
         return {data,screenshots,similar}
     }catch(err){
         throw err
-    }
-    
+    } 
 }
+
+// a function to get all the genres with their id and name
+export const allGenre = async function () {
+        const Genres = await fetchFn(`${API_URL}genres?key=${API_KEY}`);
+        const {count , results}:{count:number,results:[]} = Genres;
+        const GenreArray = results?.map(({name,id}:{name:string,id:number})=>({name,id}));
+        return GenreArray
+        
+    };
+
+    export const gameByGenre = async function ({genreID}:{genreID:number}){
+        const data = await fetchFn(`${API_URL}games?genres=${genreID}&page_size=15&key=${API_KEY}`)
+        return data?.results
+
+    }
+
+    export const gamebyplatforms = async function (id: string, page = 1, page_size = 20) {
+        const data = await fetchFn(`${API_URL}games?platforms=${id}&page_size=${page_size || 40}&page=${page}&key=${API_KEY}`);
+        return data;
+    };
+
+    export const getGamesByIds = async function (ids: string[]) {
+        const data = await Promise.all(ids.map((id) => getGame(id)));
+        return data;
+    };
+
+
+
