@@ -5,8 +5,10 @@ import 'swiper/css';
 import Image from 'next/image';
 import { Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
+import GameDescription from './GameDescription';
 
-export default function Swipper({ items, PaginationImgs }: { items: { src: string, card: string, name?:string }[], PaginationImgs?: boolean, NameClass?: string }) {
+
+export default function Swipper({ items, PaginationImgs }: { items: { src: string, card: string, name?:string , poster:string , description:string }[], PaginationImgs?: boolean, NameClass?: string }) {
     const [swiper, setSwiper] = useState<SwiperType | null>(null);
     const [progress, setProgress] = useState(0);
 
@@ -26,7 +28,8 @@ export default function Swipper({ items, PaginationImgs }: { items: { src: strin
     }, [swiper]);
 
     return (
-        <div className='h-full w-full'>
+        <div className='h-full w-full relative'>
+
             <Swiper
                 modules={[Autoplay]}
                 autoplay={{ delay: 3000 }}
@@ -57,8 +60,10 @@ export default function Swipper({ items, PaginationImgs }: { items: { src: strin
                                     className='absolute w-full h-full object-cover object-top rounded-2xl inset-0'
                                 />
                             )}
+                            <GameDescription Name={item?.name} Poster={item?.poster} Description={item?.description} />
                         </SwiperSlide>
                     ))}
+
                 </div>
             </Swiper>
 
