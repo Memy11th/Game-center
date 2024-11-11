@@ -15,7 +15,7 @@ export default function Swipper({ items, PaginationImgs }: { items: { src: strin
     useEffect(() => {
         // creating increamental behaviour 
         const t = setInterval(() => {
-            setProgress((prev) => prev >= 100 ? 100 : prev + 3.5);
+            setProgress((prev) => prev >= 100 ? 100 : prev + 3.7);
         }, 101);
 
         return () => clearInterval(t); // clear the t interval to avoid memory leakage when the component un-mounts
