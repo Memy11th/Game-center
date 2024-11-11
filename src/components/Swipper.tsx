@@ -60,7 +60,7 @@ export default function Swipper({ items, PaginationImgs }: { items: { src: strin
                                     className='absolute w-full h-full object-cover object-top rounded-2xl inset-0'
                                 />
                             )}
-                            <GameDescription Name={item?.name} Poster={item?.poster} Description={item?.description} />
+                            <GameDescription  Poster={item?.poster} Description={item?.description} Name={item?.name} />
                         </SwiperSlide>
                     ))}
 
