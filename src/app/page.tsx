@@ -10,7 +10,8 @@ export default  function Home() {
   return <>
   <div className="min-h-screen">
   <HeroSection/>
-  <PlatformSection option ={platformOptions[0]}/>
+  {platformOptions.map((option , index)=>  <PlatformSection key={index} option ={option}/>
+)}
 
   </div>
 
