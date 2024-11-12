@@ -2,9 +2,7 @@ import HeroSection from "@/components/HeroSection";
 import PlatformSection from "@/components/PlatformSection";
 
 const platformOptions =[
-  'PC',
-  'Playstation',
-  'XBox'
+  'Playstation'
 ]
 export default  function Home() {
   return <>
