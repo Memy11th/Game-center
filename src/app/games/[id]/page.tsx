@@ -1,6 +1,7 @@
 import { getGame } from '@/Api/Api';
 import { GameResponse } from '@/interfaces/GameById';
 import { ScreenshotResponse } from '@/interfaces/GameScreenshots';
+import { GamesResponse } from '@/interfaces/SimilarGames';
 import React from 'react';
 
 export default async function Page({ params }) {
@@ -9,8 +10,7 @@ export default async function Page({ params }) {
   console.log('Movie ID:', ID);
 
   // Fetch game data with the ID
-  const { data, screenshots, similar }:{data:GameResponse, screenshots:ScreenshotResponse , } = await getGame(ID);
-  console.log(similar)
+  const { data, screenshots, similar }:{data:GameResponse, screenshots:ScreenshotResponse ,similar : GamesResponse } = await getGame(ID);
 
   return (
     <>
