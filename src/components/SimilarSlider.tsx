@@ -5,9 +5,11 @@ import 'swiper/css';
 import Image from 'next/image';
 import { Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
+import Link from 'next/link';
+import Game from '@/interfaces/Game';
+import SimilarResponse from '@/interfaces/SimilarResponse';
 
-
-export default function ScreenshotSlider({ screenshots }: {screenshots :{id:number , image:string , width:number , height:number , is_deleted:boolean }[] }) {
+export default function SimilarSlider({ Similar }: { Similar :SimilarResponse[] }) {
     const [swiper, setSwiper] = useState<SwiperType | null>(null);
 
     // Initialize the swiper with autoplay
@@ -32,7 +34,7 @@ export default function ScreenshotSlider({ screenshots }: {screenshots :{id:numb
             onMouseLeave={handleMouseLeave}
         >
             <h1 className='text-xl dark:text-rose-500 my-2'> 
-                Screenshots from gameplay
+                Similar Games
             </h1>
             <Swiper
                 modules={[Autoplay]}
@@ -44,19 +46,20 @@ export default function ScreenshotSlider({ screenshots }: {screenshots :{id:numb
                 onSwiper={setSwiper}
                 loop={true}
             >
-                {screenshots.map((screenshot) => (
-                    <SwiperSlide key={screenshot.id}>
-                            <div className='relative h-full   duration-300'>
+                {Similar.map((item) => (
+                    <SwiperSlide key={item.id}>
+                        <Link href={`/games/${item.id}`}>
+                            <div className='relative h-full group hover:scale-105 duration-300'>
                                 <Image
-                                    alt='screenshot'
-                                    src={screenshot.image}
-                                    height={screenshot.height}
-                                    width={screenshot.width}
+                                    alt={item.name}
+                                    src={item.background_image}
+                                    fill
                                     loading='lazy'
-                                    className='absolute  w-full h-full object-cover object-top rounded-2xl inset-0'
+                                    className='absolute duration-300 w-full h-full object-cover object-top rounded-2xl inset-0'
                                 />
-                                <div className='absolute inset-0 bg-rose-500 w-0 rounded-2xl group-hover:w-full h-full transition-all duration-300 opacity-40'></div>
+                                <div className='absolute inset-0 bg-gray-600 w-0 rounded-2xl group-hover:w-full h-full transition-all duration-300 opacity-40'></div>
                             </div>
+                        </Link>
                     </SwiperSlide>
                 ))}
             </Swiper>

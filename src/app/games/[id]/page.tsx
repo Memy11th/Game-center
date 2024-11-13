@@ -1,5 +1,6 @@
 import { getGame } from '@/Api/Api';
 import ScreenshotSlider from '@/components/ScreenshotsSlider';
+import SimilarSlider from '@/components/SimilarSlider';
 import { GameResponse } from '@/interfaces/GameById';
 import { ScreenshotResponse } from '@/interfaces/GameScreenshots';
 import { GamesResponse } from '@/interfaces/SimilarGames';
@@ -19,8 +20,8 @@ export default async function Page({ params }: PageProps) {
   try {
     // Fetch game data with the ID
     const { data, screenshots, similar }: { data: GameResponse; screenshots: ScreenshotResponse; similar: GamesResponse } = await getGame(ID);
-    const screenshotsArray = screenshots?.results
-    console.log(similar)
+    const screenshotsArray = screenshots?.results;
+    const similarArray = similar?.results;
     return (
       <div className="min-h-screen  rounded-xl overflow-hidden">
       <div className="grid grid-cols-12 gap-4 m-4">
@@ -41,6 +42,9 @@ export default async function Page({ params }: PageProps) {
       <div className=' grid-cols-12 flex justify-between'>
             <ScreenshotSlider screenshots={screenshotsArray} />
       </div>
+      <div className=' grid-cols-12 flex justify-between'>
+            <SimilarSlider Similar={similarArray} />
+      </div>
       
     </div>
     
@@ -49,6 +53,6 @@ export default async function Page({ params }: PageProps) {
     );
   } catch (error) {
     console.error('Failed to fetch game data:', error);
-    return <div>Error loading game data</div>;
+    return <div className='min-h-screen flex justify-center items-center'>Error loading game data</div>;
   }
 }
