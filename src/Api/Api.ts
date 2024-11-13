@@ -6,9 +6,9 @@ const fetchFn = (url:string,cache?:number)=> fetch(url,{next:{revalidate:cache |
 
 // a function to get games based on your search
 export const searchGameFn = async function (
-    query?:string,
     page:number,
     page_size:number = 20,
+    query?:string,
     cache?:number,
     filters?:{filterName:string,option:string}[]
 ){
@@ -24,8 +24,8 @@ export const getGame = async function (id:string){
     try{
         const data = await fetchFn(`${API_URL}games/${id}?key=${API_KEY}`);
         const screenshots =await fetchFn(`${API_URL}games/${id}/screenshots?key=${API_KEY}`);
-        const similar =await fetchFn(`${API_URL}games/${id}/game-series?key=${API_KEY}`)
-        return {data,screenshots,similar}
+        const {results} =await fetchFn(`${API_URL}games/${id}/game-series?key=${API_KEY}`)
+        return {data,screenshots,results}
     }catch(err){
         throw err
     } 
@@ -34,7 +34,7 @@ export const getGame = async function (id:string){
 // a function to get all the genres with their id and name
 export const allGenre = async function () {
         const Genres = await fetchFn(`${API_URL}genres?key=${API_KEY}`);
-        const {count , results}:{count:number,results:[]} = Genres;
+        const { results}:{results:[]} = Genres;
         const GenreArray = results?.map(({name,id}:{name:string,id:number})=>({name,id}));
         return GenreArray
         

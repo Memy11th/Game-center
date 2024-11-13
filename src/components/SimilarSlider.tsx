@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import Link from 'next/link';
-import Game from '@/interfaces/Game';
 import SimilarResponse from '@/interfaces/SimilarResponse';
 
 export default function SimilarSlider({ Similar }: { Similar :SimilarResponse[] }) {

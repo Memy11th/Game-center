@@ -7,7 +7,7 @@ export default interface SimilarResponse {
     background_image: string;
     rating: number;
     rating_top: number;
-    ratings: Array<any>; // Replace `any` with a specific type if known
+    ratings: Array<unknown>; // Replace `any` with a specific type if known
     ratings_count: number;
     reviews_text_count: number;
     added: number;
@@ -16,17 +16,17 @@ export default interface SimilarResponse {
     playtime: number;
     suggestions_count: number;
     updated: string;
-    user_game: any | null; // Replace `any` with a specific type if known
+    user_game: unknown | null; // Replace `any` with a specific type if known
     reviews_count: number;
     saturated_color: string;
     dominant_color: string;
-    platforms: Array<any>; // Replace `any` with a specific type if known
-    parent_platforms: Array<any>; // Replace `any` with a specific type if known
-    genres: Array<any>; // Replace `any` with a specific type if known
-    stores: Array<any>; // Replace `any` with a specific type if known
-    clip: any | null; // Replace `any` with a specific type if known
-    tags: Array<any>; // Replace `any` with a specific type if known
-    esrb_rating: any | null; // Replace `any` with a specific type if known
-    short_screenshots: Array<any>; // Replace `any` with a specific type if known
+    platforms: Array<unknown>; // Replace `any` with a specific type if known
+    parent_platforms: Array<unknown>; // Replace `any` with a specific type if known
+    genres: Array<unknown>; // Replace `any` with a specific type if known
+    stores: Array<unknown>; // Replace `any` with a specific type if known
+    clip: unknown | null; // Replace `any` with a specific type if known
+    tags: Array<unknown>; // Replace `any` with a specific type if known
+    esrb_rating: unknown | null; // Replace `any` with a specific type if known
+    short_screenshots: Array<unknown>; // Replace `any` with a specific type if known
   }
   

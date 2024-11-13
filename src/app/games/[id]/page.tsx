@@ -3,9 +3,10 @@ import ScreenshotSlider from '@/components/ScreenshotsSlider';
 import SimilarSlider from '@/components/SimilarSlider';
 import { GameResponse } from '@/interfaces/GameById';
 import { ScreenshotResponse } from '@/interfaces/GameScreenshots';
-import { GamesResponse } from '@/interfaces/SimilarGames';
 import Image from 'next/image';
 import React from 'react';
+import SimilarResponse from '@/interfaces/SimilarResponse';
+
 
 interface PageProps {
   params: {
@@ -19,9 +20,10 @@ export default async function Page({ params }: PageProps) {
 
   try {
     // Fetch game data with the ID
-    const { data, screenshots, similar }: { data: GameResponse; screenshots: ScreenshotResponse; similar: GamesResponse } = await getGame(ID);
+    const { data, screenshots, results }: { data: GameResponse; screenshots: ScreenshotResponse; results: SimilarResponse[] } = await getGame(ID);
     const screenshotsArray = screenshots?.results;
-    const similarArray = similar?.results;
+    
+
     return (
       <div className="min-h-screen  rounded-xl overflow-hidden">
       <div className="grid grid-cols-12 gap-4 m-4">
@@ -43,7 +45,7 @@ export default async function Page({ params }: PageProps) {
             <ScreenshotSlider screenshots={screenshotsArray} />
       </div>
       <div className=' grid-cols-12 flex justify-between'>
-            <SimilarSlider Similar={similarArray} />
+            <SimilarSlider Similar={results} />
       </div>
       
     </div>
