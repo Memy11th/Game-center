@@ -34,7 +34,7 @@ export default function SideNav() {
     <div className=' md:flex  bg-black/15  md:flex-col  hidden md:col-span-2   '>
     
     <div className='flex flex-col gap-8 sticky inset-0 items-center justify-center   '>
-        <h4 className='  text-sm font-bold  mt-6'>
+        <h4 className='  text-xs font-bold  mt-6'>
         <Link href={'/'} className='text-rose-500 font-bold text-xl'>
         M11
         </Link>
