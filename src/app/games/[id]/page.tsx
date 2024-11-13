@@ -40,7 +40,8 @@ export default async function Page({ params }: PageProps) {
       </div>
       <div className=' grid-cols-12 flex justify-between'>
             <ScreenshotSlider screenshots={screenshotsArray} />
-          </div>
+      </div>
+      
     </div>
     
     

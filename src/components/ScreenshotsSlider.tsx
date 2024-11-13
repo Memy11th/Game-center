@@ -5,7 +5,7 @@ import 'swiper/css';
 import Image from 'next/image';
 import { Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
-import Link from 'next/link';
+
 
 export default function ScreenshotSlider({ screenshots }: {screenshots :{id:number , image:string , width:number , height:number , is_deleted:boolean }[] }) {
     const [swiper, setSwiper] = useState<SwiperType | null>(null);
