@@ -1,9 +1,13 @@
 'use client'
 import { ThemeProvider } from 'next-themes'
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { useEffect, useState } from 'react';
 
-export default function Providers({ children }:ReactElement) {
+export default function Providers({
+    children,
+  }: Readonly<{
+    children: React.ReactNode;
+  }>) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {

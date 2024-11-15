@@ -8,7 +8,7 @@ import type { Swiper as SwiperType } from 'swiper';
 import GameDescription from './GameDescription';
 
 
-export default function Swipper({ items, PaginationImgs  }: { items: { src: string, card: string, name?:string , poster:string , description:string }[], PaginationImgs?: boolean, NameClass?: string }) {
+export default function Swipper({ items, PaginationImgs  }: { items: { src: string, card: string, name?:string  , poster:string , description:string }[], PaginationImgs?: boolean, NameClass?: string }) {
     const [swiper, setSwiper] = useState<SwiperType | null>(null);
     const [progress, setProgress] = useState(0);
 
