@@ -59,7 +59,9 @@ export default function SimilarSlider({ Similar }: { Similar :SimilarResponse[] 
                                 <div className='absolute inset-0 bg-gray-600 w-0 rounded-2xl group-hover:w-full h-full transition-all duration-300 opacity-40'></div>
                             </div>
                         </Link>
+                        
                     </SwiperSlide>
+                    
                 ))}
             </Swiper>
         </div>

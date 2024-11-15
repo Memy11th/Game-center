@@ -45,7 +45,7 @@ export default function GamesSlider({ items, Platform }: { items: Game[], Platfo
                 onSwiper={setSwiper}
                 loop={true}
             >
-                {items.map((item) => (
+                {items?.map((item) => (
                     <SwiperSlide key={item.id}>
                         <Link href={`/games/${item.id}`}>
                             <div className='relative h-full group hover:scale-105 duration-300'>
