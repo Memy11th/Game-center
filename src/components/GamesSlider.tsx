@@ -56,7 +56,7 @@ export default function GamesSlider({ items, Platform }: { items: Game[], Platfo
                                     loading='lazy'
                                     className='absolute duration-300 w-full h-full object-cover object-top rounded-2xl inset-0'
                                 />
-                                <div className='absolute inset-0 bg-rose-500 w-0 rounded-2xl group-hover:w-full h-full transition-all duration-300 opacity-40'></div>
+                                <div className='absolute inset-0 bg-gray-600/95 dark:bg-rose-500 w-0 rounded-2xl group-hover:w-full h-full transition-all duration-300 opacity-40'></div>
                             </div>
                         </Link>
                     </SwiperSlide>
