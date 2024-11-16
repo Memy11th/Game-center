@@ -11,7 +11,7 @@ import { motion } from 'framer-motion'
 export default function Signup() {
     const [showPassword,setShowPassword] = useState(false)
 
-    const handleSubmit = (formikValues)=>{
+    const handleSubmit = (formikValues:unknown)=>{
         console.log(formikValues)
     }
 
