@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Image from 'next/image';
-import { Autoplay } from 'swiper/modules';
+import { A11y, Autoplay, Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import GameDescription from './GameDescription';
 

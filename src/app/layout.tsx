@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className=" min-h-screen h-full "> 
+      <body className=" min-h-screen h-full overflow-x-hidden "> 
         <Providers>
         <GridContainer cols={12}>
           <SideNav />

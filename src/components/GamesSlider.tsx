@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Image from 'next/image';
-import { Autoplay } from 'swiper/modules';
+import {  Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import Link from 'next/link';
 import Game from '@/interfaces/Game';
+
 
 export default function GamesSlider({ items, Platform }: { items: Game[], Platform: string }) {
     const [swiper, setSwiper] = useState<SwiperType | null>(null);
