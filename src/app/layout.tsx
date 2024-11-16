@@ -5,6 +5,7 @@ import SideNav from "@/components/SideNav";
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/ThemeProvider";
 import Footer from "@/components/Footer";
+import ProgressBar from "@/components/ProgressBar";
 
 export const metadata: Metadata = {
   title: "Games store center by M11",
@@ -25,6 +26,7 @@ export default function RootLayout({
           
             <div className="md:col-span-10 col-span-12 min-h-screen ">
             <Navbar />
+            <ProgressBar/>
             {children}
             <Footer/>
 
