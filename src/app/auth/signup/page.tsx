@@ -6,6 +6,7 @@ import { AiFillEyeInvisible } from 'react-icons/ai'
 import { BiSolidShow } from 'react-icons/bi'
 import Link from 'next/link'
 import { IoIosInformationCircleOutline } from 'react-icons/io'
+import { motion } from 'framer-motion'
 
 export default function Signup() {
     const [showPassword,setShowPassword] = useState(false)
@@ -39,7 +40,7 @@ export default function Signup() {
     return (
         <div className='grid grid-cols-12 justify-center w-2/3 mx-auto items-center  min-h-screen'>
 
-            <form className='col-span-8  flex flex-col gap-2 duration-200 justify-center p-2   ' onSubmit={formik.handleSubmit}>
+            <motion.form initial={{scale:0.7 , opacity:0 }}  animate={{ opacity: 1, scale: 1, transition: { duration: 1, ease: 'easeInOut' } }}  className='col-span-8  flex flex-col gap-2 duration-200 justify-center p-2   ' onSubmit={formik.handleSubmit}>
                 <label className='rounded-xl dark:text-rose-500 font-bold ' htmlFor="firstName">First name</label>
                 <input  className='rounded-xl p-2 outline-none  ' type="text" name="firstName" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.firstName} placeholder="Enter your first name" />
                 {formik.errors.firstName && formik.touched.firstName && <div className='flex justify-start items-center'> { React.cloneElement(<IoIosInformationCircleOutline /> , {className:'text-lg text-rose-500 '} ) } <span>{formik.errors.firstName}</span></div> }
@@ -61,10 +62,13 @@ export default function Signup() {
                 <input  className='rounded-xl p-2 outline-none  ' type={showPassword ? 'text' : 'password'} name="rePassword" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.rePassword} placeholder="Re-enter your password" />
                 {formik.errors.rePassword && formik.touched.rePassword && <div className='flex justify-start items-center'> { React.cloneElement(<IoIosInformationCircleOutline /> , {className:'text-lg text-rose-500 '} ) } <span>{formik.errors.rePassword}</span></div> }
                 <button type='submit' className='p-2 w-full bg-black/10 transition-all duration-200 dark:bg-rose-500 rounded-xl'>Sign up</button>
-                <p className='text-center'><span>Already signed up ?</span> <Link className='underline font-semibold text-base ' href={'/auth/login'}>Log in now</Link></p>
+                <p className='text-center'>
+                <span>Already signed up ?</span>
+                <Link className='underline font-semibold text-base ' href={'/auth/login'}>Log in now</Link>
+                </p>
 
 
-            </form>
+            </motion.form>
         
         </div>
     )
