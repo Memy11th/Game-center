@@ -1,9 +1,12 @@
 'use client'
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import * as yup from 'yup'
+import { AiFillEyeInvisible } from 'react-icons/ai'
+import { BiSolidShow } from 'react-icons/bi'
 
 export default function Signup() {
+    const [showPassword,setShowPassword] = useState(false)
 
     const handleSubmit = (formikValues)=>{
         console.log(formikValues)
@@ -35,13 +38,22 @@ export default function Signup() {
     return (
         <div className='grid grid-cols-12 justify-center w-2/3 mx-auto items-center  min-h-screen'>
 
-            <form className='col-span-8  flex flex-col gap-4 duration-200 justify-center p-2   ' onSubmit={formik.handleSubmit}>
+            <form className='col-span-8  flex flex-col gap-2 duration-200 justify-center p-2   ' onSubmit={formik.handleSubmit}>
                 <label className='rounded-xl dark:text-rose-500' htmlFor="firstName">First name</label>
                 <input  className='rounded-xl p-2 outline-none  ' type="text" name="firstName" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.firstName} placeholder="Enter your first name" />
                 <label className='rounded-xl dark:text-rose-500' htmlFor="lastName">Last name</label>
                 <input  className='rounded-xl p-2 outline-none  ' type="text" name="lastName" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.lastName} placeholder="Enter your last name" />
+                <label className='rounded-xl dark:text-rose-500' htmlFor="MobileNum">Phone number</label>
+                <input  className='rounded-xl p-2 outline-none  ' type="text" name="MobileNum" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.MobileNum} placeholder="Enter your phone number" />
                 <label className='rounded-xl dark:text-rose-500' htmlFor="email">Email address</label>
                 <input  className='rounded-xl p-2 outline-none  ' type="text" name="email" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.email} placeholder="Enter your email address" />
+                <label className='rounded-xl dark:text-rose-500 flex justify-between items-center' htmlFor="password">Enter your password 
+                <button onClick={() => setShowPassword(!showPassword)}>{showPassword ? <AiFillEyeInvisible /> : <BiSolidShow />} </button>
+                </label>
+                <input  className='rounded-xl p-2 outline-none  ' type={showPassword ? 'text' : 'password'} name="password" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.password} placeholder="Enter your password" />
+                <label className='rounded-xl dark:text-rose-500 flex justify-between items-center ' htmlFor="rePassword">Re-enter your password   {showPassword ? <AiFillEyeInvisible /> : <BiSolidShow />}</label>
+                <input  className='rounded-xl p-2 outline-none  ' type={showPassword ? 'text' : 'password'} name="rePassword" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.rePassword} placeholder="Re-enter your password" />
+                <button>Sign up</button>
 
 
             </form>
