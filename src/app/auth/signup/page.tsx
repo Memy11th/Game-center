@@ -7,17 +7,19 @@ import { BiSolidShow } from 'react-icons/bi'
 import Link from 'next/link'
 import { IoIosInformationCircleOutline } from 'react-icons/io'
 import { motion } from 'framer-motion'
+import { signup } from '@/middleware/middleware'
 
 export default function Signup() {
     const [showPassword,setShowPassword] = useState(false)
 
-    const handleSubmit = (formikValues:unknown)=>{
-        console.log(formikValues)
+    const handleSubmit = async (formikValues:unknown)=>{
+        // console.log(formikValues)
+        const response = await  signup(formikValues)
+        console.log(response)
     }
 
     const validationSchema = yup.object({
-        firstName:yup.string().required('This field is required').min(2,'Name must be at least 2 characters long').max(20,'Name must be at most 20 characters long'),
-        lastName:yup.string().required('This field is required').min(2,'Name must be at least 2 characters long').max(20,'Name must be at most 20 characters long'),
+        name:yup.string().required('This field is required').min(2,'Name must be at least 2 characters long').max(20,'Name must be at most 20 characters long'),
         MobileNum:yup.string().required('This field is required').matches(/^[0-9]{11}$/, 'Mobile number must be 10 digits'),
         email:yup.string().email('You must enter a valid email'),
         password:yup.string().required('This field is required').min(8,'Password must be at least 8 characters long').matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, 'Password must contain at least one letter and one number'),
@@ -26,8 +28,7 @@ export default function Signup() {
 
     const formik = useFormik({
         initialValues:{
-            firstName:'',
-            lastName:'',
+            name:'',
             MobileNum:'',
             email:'',
             password:'',
@@ -41,12 +42,9 @@ export default function Signup() {
         <div className='grid grid-cols-12 justify-center w-2/3 mx-auto items-center  min-h-screen'>
 
             <motion.form initial={{scale:0.7 , opacity:0 }}  animate={{ opacity: 1, scale: 1, transition: { duration: 1, ease: 'easeInOut' } }}  className='col-span-8  flex flex-col gap-2 duration-200 justify-center p-2   ' onSubmit={formik.handleSubmit}>
-                <label className='rounded-xl dark:text-rose-500 font-bold ' htmlFor="firstName">First name</label>
-                <input  className='rounded-xl p-2 outline-none  ' type="text" name="firstName" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.firstName} placeholder="Enter your first name" />
-                {formik.errors.firstName && formik.touched.firstName && <div className='flex justify-start items-center'> { React.cloneElement(<IoIosInformationCircleOutline /> , {className:'text-lg text-rose-500 '} ) } <span>{formik.errors.firstName}</span></div> }
-                <label className='rounded-xl dark:text-rose-500 font-bold' htmlFor="lastName">Last name</label>
-                <input  className='rounded-xl p-2 outline-none  ' type="text" name="lastName" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.lastName} placeholder="Enter your last name" />
-                {formik.errors.lastName && formik.touched.lastName && <div className='flex justify-start items-center'> { React.cloneElement(<IoIosInformationCircleOutline /> , {className:'text-lg text-rose-500 '} ) } <span>{formik.errors.lastName}</span></div> }
+                <label className='rounded-xl dark:text-rose-500 font-bold ' htmlFor="name">Name</label>
+                <input  className='rounded-xl p-2 outline-none  ' type="text" name="name" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.name} placeholder="Enter your name" />
+                {formik.errors.name && formik.touched.name && <div className='flex justify-start items-center'> { React.cloneElement(<IoIosInformationCircleOutline /> , {className:'text-lg text-rose-500 '} ) } <span>{formik.errors.name}</span></div> }
                 <label className='rounded-xl dark:text-rose-500 font-bold' htmlFor="MobileNum">Phone number</label>
                 <input  className='rounded-xl p-2 outline-none  ' type="text" name="MobileNum" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.MobileNum} placeholder="Enter your phone number" />
                 {formik.errors.MobileNum && formik.touched.MobileNum && <div className='flex justify-start items-center'> { React.cloneElement(<IoIosInformationCircleOutline /> , {className:'text-lg text-rose-500 '} ) } <span>{formik.errors.MobileNum}</span></div> }
