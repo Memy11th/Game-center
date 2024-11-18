@@ -7,16 +7,17 @@ import { BiSolidShow } from 'react-icons/bi'
 import Link from 'next/link'
 import { IoIosInformationCircleOutline } from 'react-icons/io'
 import { motion } from 'framer-motion'
-import { signup } from '@/middleware/middleware'
+import { signup } from '@/actions/auth'
 
 export default function Signup() {
     const [showPassword,setShowPassword] = useState(false)
 
     const handleSubmit = async (formikValues:unknown)=>{
         // console.log(formikValues)
-        const response = await  signup(formikValues)
+        const response = await signup(formikValues)
         console.log(response)
-    }
+
+}
 
     const validationSchema = yup.object({
         name:yup.string().required('This field is required').min(2,'Name must be at least 2 characters long').max(20,'Name must be at most 20 characters long'),
@@ -62,7 +63,7 @@ export default function Signup() {
                 <button type='submit' className='p-2 w-full bg-black/10 transition-all duration-200 dark:bg-rose-500 rounded-xl'>Sign up</button>
                 <p className='text-center'>
                 <span>Already signed up ?</span>
-                <Link className='underline font-semibold text-base ' href={'/auth/login'}>Log in now</Link>
+                <Link className='underline font-semibold text-base ' href={'/auth/login'}>Login now</Link>
                 </p>
 
 
