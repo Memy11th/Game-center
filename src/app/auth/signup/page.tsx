@@ -1,6 +1,6 @@
 'use client'
 import { useFormik } from 'formik'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import * as yup from 'yup'
 import { AiFillEyeInvisible } from 'react-icons/ai'
 import { BiSolidShow } from 'react-icons/bi'
@@ -13,7 +13,9 @@ export default function Signup() {
     const [showPassword,setShowPassword] = useState(false)
 
     const handleSubmit = async (formikValues:unknown)=>{
-        console.log(formikValues);
+        // console.log(formikValues);
+        const res = await signup(formikValues)
+        console.log(res);
 }
 
     const validationSchema = yup.object({
@@ -36,7 +38,7 @@ export default function Signup() {
         validationSchema,
     })
 
-   
+
 
     return (
         <div className='grid grid-cols-12 justify-center w-2/3 mx-auto items-center  min-h-screen'>
