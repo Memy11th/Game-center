@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-let cached = global.mongoose || { conn: null, promise: null };
+const cached = global.mongoose || { conn: null, promise: null };
 
 const connect = async () => {
   // If the connection already exists, use the cached connection
@@ -8,10 +8,9 @@ const connect = async () => {
 
   // If there's no cached connection, establish a new one
   if (!cached.promise) {
-    cached.promise = mongoose.connect(process.env.MONGO_URI!, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      bufferCommands: false, // Disable buffering
+    cached.promise =await  mongoose.connect(process.env.MONGO_URI, {
+      bufferCommands: false,
+      serverSelectionTimeoutMS: 30000, // 30 seconds
     })
     .then((conn) => {
       console.log("DB connected successfully!");
