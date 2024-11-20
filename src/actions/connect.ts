@@ -1,30 +1,31 @@
-import mongoose from "mongoose";
-let cached = (global as any).mongoose || { conn: null, promise: null };
- const connect = async () => {
-    if (cached.conn) return cached.conn;
-  
-    if (!cached.promise) {
-      cached.promise = mongoose
-        .connect(process.env.MONGO_URI!, {
-          dbName: "Memy11th",
-          bufferCommands: false,
-          serverSelectionTimeoutMS: 5000, // Timeout for finding a server
-          socketTimeoutMS: 45000, // Timeout for establishing a socket
-        })
-        .then((mongooseInstance) => {
-          console.log("DB connected successfully!");
-          return mongooseInstance;
-        })
-        .catch((err) => {
-          console.error("DB connection error:", err);
-          cached.promise = null; // Reset promise on failure
-          throw err;
-        });
-    }
-  
-    cached.conn = await cached.promise;
-    return cached.conn;
-  };
+import mongoose from 'mongoose';
 
-  export default connect;
-  
+let cached = global.mongoose || { conn: null, promise: null };
+
+const connect = async () => {
+  // If the connection already exists, use the cached connection
+  if (cached.conn) return cached.conn;
+
+  // If there's no cached connection, establish a new one
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(process.env.MONGO_URI!, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      bufferCommands: false, // Disable buffering
+    })
+    .then((conn) => {
+      console.log("DB connected successfully!");
+      return conn;
+    })
+    .catch((err) => {
+      console.error("DB connection failed:", err.message);
+      throw err;
+    });
+  }
+
+  // Await the promise to ensure the connection is established before returning
+  cached.conn = await cached.promise;
+  return cached.conn;
+};
+
+export default connect;

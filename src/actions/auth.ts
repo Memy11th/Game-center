@@ -11,27 +11,16 @@ const generateToken = async ({ id }: { id: any }) => {
   });
 };
 export const signup = async (data: any) => {
-    try {
-      await connect();
-  
-      // Check if user already exists
-      const existingUser = await User.findOne({ email: data.email });
-      if (existingUser) {
-        return { error: "User already exists with this email." };
-      }
-  
-      // Hash the password
-      const hashedPassword = await bcrypt.hash(data.password, 10);
-  
-      // Create the user
-      const user = await User.create({ ...data, password: hashedPassword });
-      return { success: "User created successfully" };
-    } catch (error: any) {
-      console.error("User creation failed:", error);
-      return { error: "User creation failed", details: error.message };
-    }
-  };
-  
+  try {
+    await connect();
+    const hashedPassword = await bcrypt.hash(data.password, 10);
+    const user = await User.create({ ...data, password: hashedPassword });
+    return { success: "User created successfully" };
+  } catch (error: any) {
+    console.error(error);
+    return { error: "User creation failed", details: error.message };
+  }
+};
 export const login = async (data: { email: string; password: string }) => {
   try {
     await connect();
